@@ -58,7 +58,7 @@ compromise.
 
 ### CloudTrail (All Regions)
 - Enabled CloudTrail across all regions
-- Logs all management and API activity
+- Logs all management and API activity into S3 Bucket
 
 **Rationale:**  
 CloudTrail provides auditability and supports detection of unauthorized access,
@@ -67,8 +67,8 @@ privilege escalation attempts, and suspicious API usage across the account.
 ---
 
 ### Billing Budget & Alerts
-- Configured a monthly AWS Budget aligned with Free Tier limits
-- Enabled default budget alerts
+- Configured a monthly AWS Budget aligned with Free Tier credit limits ($100)
+- Enabled default budget alerts (Actual Cost > 80%; Forecasted Cost > 100%; Actual Cost > 100%)
 
 **Rationale:**  
 This helps detect abnormal usage early and prevents accidental or malicious cost
