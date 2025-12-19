@@ -16,7 +16,7 @@ accidental or malicious misuse while operating within AWS Free Tier constraints.
 - [Outcome](#outcome)
 
 ---
-<a href="initial"></a>
+<a name="initial"></a>
 ## Initial Risk Assessment
 
 A newly created AWS account presents several immediate risks if left unconfigured:
@@ -30,7 +30,7 @@ A newly created AWS account presents several immediate risks if left unconfigure
 Before deploying infrastructure, these risks were addressed at the account level.
 
 ---
-<a href="hardening"></a>
+<a name="hardening"></a>
 ## Hardening Actions Taken
 
 ### Root Account Protection
@@ -75,7 +75,7 @@ This helps detect abnormal usage early and prevents accidental or malicious cost
 overruns during experimentation.
 
 ---
-<a href="metrics"></a>
+<a name="metrics"></a>
 ## Baseline Metrics
 
 | Metric | Before | After |
@@ -88,7 +88,7 @@ overruns during experimentation.
 | Cost visibility | None | Monthly budget + alerts |
 
 ---
-<a href="prod"></a>
+<a name="prod"></a>
 ## Production Considerations (Not Implemented)
 
 In a real production environment, additional controls would be evaluated:
@@ -103,7 +103,7 @@ These controls were intentionally not implemented at this stage to keep the
 environment simple and Free Tier–compatible.
 
 ---
-<a href="outcome"></a>
+<a name="outcome"></a>
 ## Outcome
 
 With this baseline in place, the AWS account now has:
