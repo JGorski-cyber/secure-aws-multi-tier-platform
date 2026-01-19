@@ -1,4 +1,6 @@
--- Detecting basic IAM Lifecycle
+-- # ============================= #
+-- # IAM Lifecycle Detection Query #
+-- # ============================= #
 SELECT
   eventTime,
   eventName,
@@ -17,7 +19,9 @@ WHERE eventSource = 'iam.amazonaws.com'
   )
 ORDER BY eventTime DESC;
 
--- Detecting Console vs API usage
+-- # ============================== #
+-- # Detecting Console vs API usage #
+-- # ============================== #
 SELECT
   eventTime,
   eventName,
@@ -30,7 +34,9 @@ WHERE userIdentity.type IN ('IAMUser', 'AssumedRole')
 ORDER BY eventTime DESC
 LIMIT 50;
 
--- Detecing basic Privilege Escalation attempt
+-- # ===================================== #
+-- # Detecing Privilege Escalation attempt #
+-- # ===================================== #
 SELECT
   eventName,
   eventTime,
@@ -42,7 +48,9 @@ WHERE eventSource = 'iam.amazonaws.com'
   AND json_extract_scalar(requestParameters, '$.policyArn') LIKE '%AdministratorAccess%'
 ORDER BY eventTime DESC;
 
--- Detecting Root account usage
+-- # ============================ #
+-- # Detecting Root account usage #
+-- # ============================ #
 SELECT
   eventTime,
   eventName,
@@ -52,7 +60,9 @@ FROM cloudtrail_logs.cloudtrail_events
 WHERE userIdentity.type = 'Root'
 ORDER BY eventTime DESC;
 
--- Detecting Failed or Denied Actions
+-- # ================================== #
+-- # Detecting Failed or Denied Actions #
+-- # ================================== #
 SELECT
   eventTime,
   eventName,
@@ -62,3 +72,4 @@ SELECT
 FROM cloudtrail_logs.cloudtrail_events
 WHERE errorCode IS NOT NULL
 ORDER BY eventTime DESC;
+
