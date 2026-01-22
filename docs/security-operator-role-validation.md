@@ -11,6 +11,7 @@ This document validates that the role:
 - Adheres to least privilege principles
 
 All tests were performed using the AWS CLI after assuming the role via STS.
+
 ---
 ## Index
 
