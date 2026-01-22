@@ -1,4 +1,4 @@
-# AWS Account Security Baseline (v1)
+# AWS Account Security Baseline
 
 This document describes the initial security baseline applied to a new AWS account
 before deploying any production-like infrastructure.
