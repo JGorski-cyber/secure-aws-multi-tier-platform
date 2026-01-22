@@ -11,9 +11,17 @@ This document validates that the role:
 - Adheres to least privilege principles
 
 All tests were performed using the AWS CLI after assuming the role via STS.
-
 ---
+## Index
 
+- [Role Creation](#role)
+- [Athena Access Validation](#athena)
+- [CloudTrail Log Access Validation](#cloudtrail)
+- [CloudWatch Log Access Validation](#cloudwatch)
+- [Negative Tests (Expected Failure)](#negative)
+- [Summary & Conclusion](#summary)
+---
+<a name="role"></a>
 ## Role Creation
 
 **Role Name:** SecurityOperatorReadOnlyRole  
@@ -39,7 +47,7 @@ aws sts assume-role \
 Temporary credentials were exported and used for all subsequent tests.
 
 ---
-
+<a name="athena"></a>
 ## Athena Access Validation
 
 ### Listing Databases
@@ -117,8 +125,8 @@ aws athena get-query-results \
 </p>
 
 ---
-
-## CloudTrail Log Access (S3)
+<a name="cloudtrail"></a>
+## CloudTrail Log Access Validation (S3)
 
 ### Listing Logs
 ```bash
@@ -145,8 +153,8 @@ aws s3 cp s3://cloud-foundation-cloudtrail-logs-us-east-1/AWSLogs/<ACCOUNT_ID>/C
 </p>
 
 ---
-
-## CloudWatch Logs Access
+<a name="cloudwatch"></a>
+## CloudWatch Logs Access Validation
 
 ### Listing Log Groups
 
@@ -173,7 +181,7 @@ aws logs describe-log-groups
     ]
 }
 ```
-**Main Log Group Name used:** `"/aws/cloudtrail/management-events"`
+- **Main Log Group Name used:** `"/aws/cloudtrail/management-events"`
 
 ✅ Confirms read access to CloudWatch Logs.
 
@@ -190,7 +198,7 @@ MSYS_NO_PATHCONV=1 aws logs filter-log-events \
 --limit 5
 ```
 
-The **MSYS_NO_PATHCONV=1** flag was required to prevent Git Bash from interpreting the log group name as a Windows filesystem path.
+- The **MSYS_NO_PATHCONV=1** flag was required to prevent Git Bash from interpreting the log group name as a Windows filesystem path.
 
 ✅ Log events successfully retrieved after fix.
 
@@ -199,7 +207,7 @@ The **MSYS_NO_PATHCONV=1** flag was required to prevent Git Bash from interpreti
 </p>
 
 ---
-
+<a name="negative"></a>
 ## Negative Tests (Expected Failures)
 
 The following tests were intentionally performed to validate least privilege enforcement.
@@ -241,8 +249,8 @@ AccessDenied: not authorized to perform iam:CreateUser
 ✅ Expected behavior.
 
 ---
-
-## Summary
+<a name="summary"></a>
+## Summary & Conclusion
 
 The **SecurityOperatorReadOnlyRole** successfully demonstrates:
 
