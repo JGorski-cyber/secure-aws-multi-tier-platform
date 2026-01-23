@@ -267,7 +267,7 @@ Key tradeoffs include:
 
 ---
 <a name="repository"></a>
-## 🛠️ Repository Structure (WIP)
+## 🛠️ Repository Structure
 
 ```text
 .
