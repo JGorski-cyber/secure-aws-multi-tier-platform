@@ -28,8 +28,6 @@ All alarms were deployed via Infrastructure as Code (Terraform) and tested manua
 
 CloudTrail events are streamed into a centralized CloudWatch Log Group, where metric filters extract security-relevant signals that feed CloudWatch alarms.
 
-[Insert CloudWatch Diagram]
-
 ---
 <a name="IaC"></a>
 ## Infrastructure as Code
@@ -65,7 +63,7 @@ These actions may indicate:
 **Alarm Output:**
 
 <p align="center">
-  <img src="./cloudwatch-alarms-triggered/a1-iam-lifecycle-alarm.png" width="750">
+  <img src="./cloudwatch-alarms-tests/a1-iam-lifecycle-alarm.png" width="750">
 </p>
 
 ---
@@ -89,7 +87,7 @@ Root credentials should never be used for day-to-day operations. Any activity in
 **Alarm Output:**
 
 <p align="center">
-  <img src="./cloudwatch-alarms-triggered/a2-root-account-usage-alarm.png" width="750">
+  <img src="./cloudwatch-alarms-tests/a2-root-account-usage-alarm.png" width="750">
 </p>
 
 ---
@@ -120,7 +118,7 @@ This means:
 **Alarm Output:**
 
 <p align="center">
-  <img src="./cloudwatch-alarms-triggered/a3-console-login-failure-alarm.png" width="750">
+  <img src="./cloudwatch-alarms-tests/a3-console-login-failure-alarm.png" width="750">
 </p>
 
 ---
@@ -158,7 +156,7 @@ This confirms correct metric extraction, alarm configuration, and expected Cloud
 **Post-Evaluation Alarm Output:**
 
 <p align="center">
-  <img src="./cloudwatch-alarms-triggered/alarms-OK.png" width="750">
+  <img src="./cloudwatch-alarms-tests/alarms-OK.png" width="750">
 </p>
 
 ---

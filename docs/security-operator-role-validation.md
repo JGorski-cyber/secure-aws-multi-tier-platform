@@ -103,7 +103,7 @@ After the update, the query executed successfully:
 }
 ```
 <p align="center">
-  <img src="./security-operator-role-access-tests/t1-athena-query-success.png" width="750">
+  <img src="./security-operator-access-tests/t1-athena-query-success.png" width="750">
 </p>
 
 ---
@@ -122,7 +122,7 @@ aws athena get-query-results \
 ✅ Query results retrieved successfully  
 
 <p align="center">
-  <img src="./security-operator-role-access-tests/t2-athena-query-results.png" width="750">
+  <img src="./security-operator-access-tests/t2-athena-query-results.png" width="750">
 </p>
 
 ---
@@ -137,7 +137,7 @@ aws s3 ls s3://cloud-foundation-cloudtrail-logs-us-east-1/AWSLogs/<ACCOUNT_ID>/C
 ✅ CloudTrail log files listed successfully.
 
 <p align="center">
-  <img src="./security-operator-role-access-tests/t3-listing-cloudtrail-logs.png" width="750">
+  <img src="./security-operator-access-tests/t3-listing-cloudtrail-logs.png" width="750">
 </p>
 
 ---
@@ -150,7 +150,7 @@ aws s3 cp s3://cloud-foundation-cloudtrail-logs-us-east-1/AWSLogs/<ACCOUNT_ID>/C
 ✅ Logs copied locally for offline analysis  
 
 <p align="center">
-  <img src="./security-operator-role-access-tests/t4-copying-cloudtrail-logs.png" width="750">
+  <img src="./security-operator-access-tests/t4-copying-cloudtrail-logs.png" width="750">
 </p>
 
 ---
@@ -204,7 +204,7 @@ MSYS_NO_PATHCONV=1 aws logs filter-log-events \
 ✅ Log events successfully retrieved after fix.
 
 <p align="center">
-  <img src="./security-operator-role-access-tests/t5-filtering-log-events.png" width="750">
+  <img src="./security-operator-access-tests/t5-filtering-log-events.png" width="750">
 </p>
 
 ---

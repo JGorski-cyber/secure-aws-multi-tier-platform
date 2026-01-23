@@ -73,7 +73,7 @@ At a high level, the project establishes the following security architecture:
 **Full Architecture Diagram & Service Wiring:**
 
 <p align="center">
-  <img src="./docs/diagrams/full-architecture-diagram.png" width="750">
+  <img src="./diagrams/full-architecture-diagram.png" width="750">
 </p>
 
 **Early-stage architecture diagrams can be found under:**
