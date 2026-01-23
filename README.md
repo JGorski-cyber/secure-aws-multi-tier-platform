@@ -1,4 +1,4 @@
-# 🔐 AWS Cloud Security Foundations — Account Hardening, Auditability, and IAM Monitoring
+# 🔐 AWS Cloud Security Foundation — Account Hardening, Auditability, and IAM Monitoring
 
 <a name="project-overview"></a>
 ## Project Overview
