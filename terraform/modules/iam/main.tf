@@ -25,8 +25,8 @@ data "aws_iam_policy_document" "security_operator_permissions" {
     ]
 
     resources = [
-      aws_s3_bucket.cloudtrail_logs.arn,
-      "${aws_s3_bucket.cloudtrail_logs.arn}/*"
+      "${var.cloudtrail_s3_bucket_arn}",
+      "${var.cloudtrail_s3_bucket_arn}/*"
     ]
   }
 

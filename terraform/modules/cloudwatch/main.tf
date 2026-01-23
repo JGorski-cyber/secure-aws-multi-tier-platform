@@ -1,3 +1,13 @@
+resource "aws_cloudwatch_log_group" "cloudtrail_log_group" {
+  name              = "/aws/cloudtrail/management-events"
+  retention_in_days = 90
+
+  tags = {
+    Project = "secure-aws-multi-tier-platform"
+    Purpose = "CloudTrail-Management-Events"
+  }
+}
+
 # ======================= #
 # IAM Lifecycle Detection #
 # ======================= #
@@ -102,10 +112,3 @@ resource "aws_cloudwatch_metric_alarm" "console_login_failure_alarm" {
 
   alarm_actions       = [] # No SNS for now
 }
-
-
-
-
-
-
-

@@ -5,8 +5,8 @@ resource "aws_cloudtrail" "account_trail" {
   is_multi_region_trail         = true
   enable_logging                = true
 
-  cloud_watch_logs_group_arn = "${aws_cloudwatch_log_group.cloudtrail_log_group.arn}:*"
-  cloud_watch_logs_role_arn = aws_iam_role.cloudtrail_cloudwatch_role.arn
+  cloud_watch_logs_group_arn = "${var.cloudwatch_log_group_arn}:*"
+  cloud_watch_logs_role_arn = "${var.cloudwatch_log_role_arn}"
 
 
   event_selector {
@@ -14,3 +14,5 @@ resource "aws_cloudtrail" "account_trail" {
     include_management_events = true
   }
 }
+
+
