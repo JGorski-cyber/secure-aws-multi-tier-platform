@@ -31,7 +31,7 @@ Using AWS-native services and Infrastructure as Code (Terraform), the project in
 - [Conclusion](#conclusion)
 ---
 <a name="scope"></a>
-##🎯 Scope & Constraints
+## 🎯 Scope & Constraints
 
 This project was intentionally designed with the following constraints:
 
@@ -45,7 +45,7 @@ These constraints reflect common limitations in early-stage or small-scale cloud
 
 ---
 <a name="threat"></a>
-##🚨 Threat & Risk Model
+## 🚨 Threat & Risk Model
 
 This project focuses on mitigating common risks present in newly created or lightly governed AWS accounts, including:
 
@@ -79,10 +79,10 @@ At a high level, the project establishes the following security architecture:
 
 ---
 <a name="modules"></a>
-##🗂️ Project Modules
+## 🗂️ Project Modules
 
 <a name="module-1"></a>
-###🛡️ Module 1 — Account Baseline & Hardening
+### 🛡️ Module 1 — Account Baseline & Hardening
 
 **Objective:**
 
@@ -103,7 +103,7 @@ At a high level, the project establishes the following security architecture:
 
 --- 
 <a name="module-2"></a>
-###🌐 Module 2 — Centralized Audit Logging with CloudTrail
+### 🌐 Module 2 — Centralized Audit Logging with CloudTrail
 
 **Objective:**
 
@@ -121,7 +121,7 @@ At a high level, the project establishes the following security architecture:
 
 ---
 <a name="module-3"></a>
-###🔎 Module 3 — IAM Activity Investigation with Athena
+### 🔎 Module 3 — IAM Activity Investigation with Athena
 
 **Objective:**
 - Validate that IAM lifecycle events, policy changes, and security-relevant activity can be reliably detected using CloudTrail logs queried through Amazon Athena.
@@ -142,7 +142,7 @@ At a high level, the project establishes the following security architecture:
 
 ---
 <a name="module-4"></a>
-###📢 Module 4 — IAM Security Monitoring with CloudWatch
+### 📢 Module 4 — IAM Security Monitoring with CloudWatch
 
 **Objective:**
 - Detect high-risk IAM activity using CloudWatch filters and alarms with minimal noise and clear operational value.
@@ -162,7 +162,7 @@ At a high level, the project establishes the following security architecture:
 
 --- 
 <a name="module-5"></a>
-###🕵🏻‍♂️ Module 5 — Security Operator IAM Role (Read-Only Investigation Access)
+### 🕵🏻‍♂️ Module 5 — Security Operator IAM Role (Read-Only Investigation Access)
 
 **Objective:**
 - Validate a dedicated read-only IAM role that enables security investigations without allowing modification of logging, IAM, or audit-critical resources.
@@ -188,7 +188,7 @@ At a high level, the project establishes the following security architecture:
 
 ---
 <a name="validation"></a>
-##🧪 Validation & Testing Approach
+## 🧪 Validation & Testing Approach
 
 All controls in this project were validated through hands-on testing to confirm both
 **expected access** and **expected failure**.
@@ -207,7 +207,7 @@ Detailed validation steps and evidence are documented within each module’s sup
 
 ---
 <a name="design"></a>
-##⚖️ Design Tradeoffs
+## ⚖️ Design Tradeoffs
 
 This project intentionally prioritizes **clarity, security fundamentals, and Free Tier compatibility**
 over enterprise-scale complexity.
@@ -232,7 +232,7 @@ Key tradeoffs include:
 
 ---
 <a name="skills"></a>
-##💡 Skills Demonstrated
+## 💡 Skills Demonstrated
 
 - **AWS Identity & Access Management (IAM)**
   - Least-privilege role design & validation
@@ -261,7 +261,7 @@ Key tradeoffs include:
 
 ---
 <a name="repository"></a>
-##🛠️ Repository Structure (WIP)
+## 🛠️ Repository Structure (WIP)
 
 ```text
 .
@@ -284,7 +284,7 @@ Key tradeoffs include:
 
 ---
 <a name="conclusion"></a>
-##🎯 Conclusion
+## ✅ Conclusion
 
 This project demonstrates a practical approach to securing and monitoring an AWS account
 using native services, validated controls, and deliberate design tradeoffs.
