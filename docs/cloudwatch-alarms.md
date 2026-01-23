@@ -34,13 +34,10 @@ CloudTrail events are streamed into a centralized CloudWatch Log Group, where me
 <a name="IaC"></a>
 ## Infrastructure as Code
 
-All CloudWatch log groups, metric filters, and alarms were created using Terraform.
+All CloudWatch log group, metric filters, and alarms were created using Terraform.
 
 Relevant configuration can be found in:
-- `/terraform/cloudwatch.tf`
-- `/terraform/cloudwatch_cloudtrail_iam.tf`
-- `/terraform/cloudwatch_metrics_alarms.tf`
-- `/terraform/cloudtrail.tf`
+- `/terraform/cloudwatch/main.tf`
 
 ---
 <a name="alarms"></a>

@@ -102,6 +102,7 @@ At a high level, the project establishes the following security architecture:
 
 **📝 Full Documentation, Screenshots, and Results:**
 - `/docs/account-baseline.md`
+- `/diagrams/account-baseline-diagram.png`
 
 --- 
 <a name="module-2"></a>
@@ -121,6 +122,9 @@ At a high level, the project establishes the following security architecture:
 - Account-wide visibility into administrative and IAM-related activity
 - Tamper-resistant audit trail suitable for security investigations and forensics
 
+**📝 Full Documentation, Screenshots, and Results:**
+- `/diagrams/cloudtrail-setup-diagram.png`
+
 ---
 <a name="module-3"></a>
 ### 🔎 Module 3 — IAM Activity Investigation with Athena
@@ -139,7 +143,7 @@ At a high level, the project establishes the following security architecture:
 
 **📝 Full Documentation, Screenshots, and Results:**
 - `/docs/athena-investigation-report.md`
-- `/docs/athena-query-outputs` (Output Screenshots)
+- `/docs/athena-query-outputs/` (Athena Output Screenshots)
 - `/athena-queries.sql`
 
 ---
@@ -160,7 +164,7 @@ At a high level, the project establishes the following security architecture:
 
 **📝 Full Documentation, Screenshots, and Results:**
 - `/docs/cloudwatch-alarms.md`
-- `/docs/cloudwatch-alarm-tests` (Alarm Screenshots)
+- `/docs/cloudwatch-alarm-tests/` (Alarm Result Screenshots)
 
 --- 
 <a name="module-5"></a>
@@ -186,7 +190,7 @@ At a high level, the project establishes the following security architecture:
 
 **📝 Full Documentation, Screenshots, and Results:**
 - `/docs/security-operator-role-validation.md`
-- `/docs/security-operator-access-tests` (Test Screenshots)
+- `/docs/security-operator-access-tests/` (Test Result Screenshots)
 
 ---
 <a name="validation"></a>
@@ -267,21 +271,26 @@ Key tradeoffs include:
 
 ```text
 .
-├── terraform/                 # Infrastructure as Code (AWS resources)
-│   ├── iam.tf
-│   ├── cloudtrail.tf
-│   ├── cloudwatch.tf
-│   └── cloudwatch_metrics_alarms.tf
+├── diagrams/                       # Project stage architecture diagrams 
 │
-├── docs/                      # Module documentation and validation reports
+├── docs/                           # Modules' in-depth documentation and validation reports
 │   ├── account-baseline.md
-│   ├── cloudtrail-logging.md
-│   ├── athena-investigation.md
-│   ├── cloudwatch-monitoring.md
-│   └── security-operator-role.md
+│   ├── athena-investigation-report.md
+│   ├── cloudwatch-alarms.md
+│   └── security-operator-role-validation.md
 │
-├── athena-queries.sql         # Investigation queries
-└── README.md                  # Project overview and module summaries
+├── terraform/                      # Infrastructure as Code (AWS resources)
+│   ├── modules/
+│   │   ├── athena/
+│   │   ├── cloudtrail/
+│   │   ├── cloudwatch/
+│   │   └── iam/
+│   ├── main.tf
+│   ├── variables.tf
+│   └── providers.tf
+│
+├── athena-queries.sql              # Athena investigation queries
+└── README.md                       # Project overview and module summaries
 ```
 
 ---
