@@ -1,5 +1,6 @@
-# AWS Cloud Security Foundations — Account Hardening, Auditability, and IAM Monitoring
+# 🔐 AWS Cloud Security Foundations — Account Hardening, Auditability, and IAM Monitoring
 
+<a name="project-overview"></a>
 ## Project Overview
 
 This independent portfolio project addresses a common early-stage cloud security problem:
@@ -11,8 +12,26 @@ The project assumes a **single AWS account in a pre-production state**, prior to
 Using AWS-native services and Infrastructure as Code (Terraform), the project incrementally builds a **controlled and observable cloud foundation**, suitable for monitoring administrative activity, investigating security events, and operating safely under cost and tooling constraints.
 
 ---
+## Index
 
-## Scope & Constraints
+- [Project Overview](#project-overview)
+- [Scope & Constraints](#scope)
+- [Threat & Risk Model](#threat)
+- [High-Level Architecture & Diagram](#architecture)
+- [Project Modules](#modules)
+  - [Module 1 — Account Baseline & **Hardening**](#module-1)
+  - [Module 2 — Centralized Audit Logging with **CloudTrail**](#module-2)
+  - [Module 3 — IAM Activity Investigation with **Athena**](#module-3)
+  - [Module 4 — IAM Security Monitoring with **CloudWatch**](#module-4)
+  - [Module 5 — Security Operator **IAM Role**](#module-5)
+- [Validation & Testing Approach](#validation)
+- [Design Tradeoffs](#design)
+- [Skills Demonstrated](#skills)
+- [Repository Structure](#repository)
+- [Conclusion](#conclusion)
+---
+<a name="scope"></a>
+##🎯 Scope & Constraints
 
 This project was intentionally designed with the following constraints:
 
@@ -22,42 +41,48 @@ This project was intentionally designed with the following constraints:
 - Low-volume / synthetic activity data
 - AWS-native services only
 
-These constraints reflect common limitations in early-stage or small-scale cloud environments and required deliberate design tradeoffs around monitoring scope, signal quality, and cost control.
+These constraints reflect common limitations in early-stage or small-scale cloud environments and required deliberate design tradeoffs around **monitoring scope, signal quality, and cost control**.
 
 ---
-
-## Threat & Risk Model
+<a name="threat"></a>
+##🚨 Threat & Risk Model
 
 This project focuses on mitigating common risks present in newly created or lightly governed AWS accounts, including:
 
 - Root and IAM credential misuse, whether accidental or malicious
-- Lack of centralized auditability for management-plane activity
+- Lack of centralized auditability for management activities
 - Undetected identity lifecycle changes (user creation, deletion, or misuse)
 - Delayed visibility into abnormal authentication behavior
 - Uncontrolled cost exposure in unmanaged environments
 
-The implemented controls prioritize early detection and investigation of these risks over exhaustive security coverage.
+The implemented controls prioritize **early detection and investigation** of these risks over exhaustive security coverage.
 
 ---
-
-## High-Level Architecture
+<a name="architecture"></a>
+## 🏗️ High-Level Architecture & Diagram
 
 At a high level, the project establishes the following security architecture:
 
-- Account baseline hardening for identity and cost control
-- CloudTrail enabled for centralized management-plane audit logging
-- CloudWatch Logs and Alarms for IAM-focused security monitoring
-- Athena for ad-hoc investigation and forensic analysis of CloudTrail data
-- Read-only Security Operator role for safe investigation without administrative access
+- Account baseline hardening for **identity and cost control**
+- CloudTrail enabled for centralized **management audit logging**
+- CloudWatch Logs and Alarms for **IAM-focused security monitoring**
+- Athena for **investigative and forensic analysis** of CloudTrail log data
+- Read-only Security Operator role for **safe investigation without administrative access**
 - Infrastructure and security resources are provisioned primarily using Terraform.
 
-Architecture diagrams and detailed service wiring are work in progress and documented separately.
+**Full Architecture Diagram & Service Wiring:**
 
 (INSERT PROJECT ARCHITECTURE DIAGRAM)
 
----
+**Early-stage architecture diagrams can be found under:**
+- `/docs/diagrams`
 
-## Module 1 — Account Baseline & Hardening
+---
+<a name="modules"></a>
+##🗂️ Project Modules
+
+<a name="module-1"></a>
+###🛡️ Module 1 — Account Baseline & Hardening
 
 **Objective:**
 
@@ -66,23 +91,23 @@ Architecture diagrams and detailed service wiring are work in progress and docum
 **Controls:**
 - Root account protected with MFA and restricted to emergency use
 - Dedicated IAM administrative user created with MFA enabled
-- CloudTrail enabled across all regions for full management and API audit logging
+- CloudTrail enabled across all regions for audit logging of management events
 - AWS Budget configured with cost alerts aligned to Free Tier limits
 
 **Outcome:**
 - Reduced risk of root account compromise and accidental misuse
 - Full account-wide audit visibility and basic cost governance in place
 
-**Full Documentation, Screenshots, and Results:**
+**📝 Full Documentation, Screenshots, and Results:**
 - `/docs/account-baseline.md`
 
 --- 
-
-## Module 2 — CloudTrail: Centralized Audit Logging
+<a name="module-2"></a>
+###🌐 Module 2 — Centralized Audit Logging with CloudTrail
 
 **Objective:**
 
-- Ensure all AWS management-plane activity is centrally logged and auditable across regions from day one.
+- Ensure all AWS management-plane and API activity is centrally logged and auditable across regions from day one.
 
 **Controls:**
 - CloudTrail enabled for all regions to capture API activity regardless of region usage
@@ -95,8 +120,8 @@ Architecture diagrams and detailed service wiring are work in progress and docum
 - Tamper-resistant audit trail suitable for security investigations and forensics
 
 ---
-
-## Module 3 — IAM Activity Investigation with Athena
+<a name="module-3"></a>
+###🔎 Module 3 — IAM Activity Investigation with Athena
 
 **Objective:**
 - Validate that IAM lifecycle events, policy changes, and security-relevant activity can be reliably detected using CloudTrail logs queried through Amazon Athena.
@@ -104,21 +129,23 @@ Architecture diagrams and detailed service wiring are work in progress and docum
 **Controls:**
 - CloudTrail management event logs used as the authoritative audit source
 - Amazon Athena configured to query CloudTrail logs stored in S3
-- SQL queries developed to detect IAM lifecycle, policy attachment, and privilege-related events
+- SQL queries developed to detect IAM lifecycle, abnormal authentication behavior, and privilege-related events
 
 **Outcome:**
-- Successfully detected IAM user creation, policy attachment/detachment, and deletion events generated via AWS CLI
+- Successfully detected IAM user creation/deletion and policy attachment/detachment generated via AWS CLI
 - Confirmed visibility into console vs API usage, root account activity, denied actions, and privilege escalation indicators
 
-**Full Documentation, Screenshots, and Results:**
+**📝 Full Documentation, Screenshots, and Results:**
 - `/docs/athena-investigation-report.md`
+- `/docs/athena-query-outputs` (Output Screenshots)
+- `/athena-queries.sql`
 
 ---
-
-## Module 4 — IAM Security Monitoring with CloudWatch
+<a name="module-4"></a>
+###📢 Module 4 — IAM Security Monitoring with CloudWatch
 
 **Objective:**
-- Detect high-risk IAM activity using AWS-native monitoring with minimal noise and clear operational value.
+- Detect high-risk IAM activity using CloudWatch filters and alarms with minimal noise and clear operational value.
 
 **Controls:**
 - CloudTrail management events streamed into CloudWatch Logs
@@ -129,12 +156,13 @@ Architecture diagrams and detailed service wiring are work in progress and docum
 - Validated real-time detection of IAM user creation/deletion and root account usage
 - Implemented threshold-based alerting for repeated console login failures with documented limitations
 
-**Full Documentation, Screenshots, and Results:**
+**📝 Full Documentation, Screenshots, and Results:**
 - `/docs/cloudwatch-alarms.md`
+- `/docs/cloudwatch-alarm-tests` (Alarm Screenshots)
 
 --- 
-
-## Module 5 — Security Operator Role (Read-Only Investigation Access)
+<a name="module-5"></a>
+###🕵🏻‍♂️ Module 5 — Security Operator IAM Role (Read-Only Investigation Access)
 
 **Objective:**
 - Validate a dedicated read-only IAM role that enables security investigations without allowing modification of logging, IAM, or audit-critical resources.
@@ -154,12 +182,13 @@ Architecture diagrams and detailed service wiring are work in progress and docum
 - Confirmed investigative access across Athena, S3, and CloudWatch Logs
 - Verified enforcement of least privilege with all destructive or administrative actions denied
 
-**Full Documentation, Screenshots, and Results:**
+**📝 Full Documentation, Screenshots, and Results:**
 - `/docs/security-operator-role-validation.md`
+- `/docs/security-operator-access-tests` (Test Screenshots)
 
 ---
-
-## Validation & Testing Approach
+<a name="validation"></a>
+##🧪 Validation & Testing Approach
 
 All controls in this project were validated through hands-on testing to confirm both
 **expected access** and **expected failure**.
@@ -177,8 +206,8 @@ Testing focused on verifying:
 Detailed validation steps and evidence are documented within each module’s supporting files.
 
 ---
-
-## Design Tradeoffs
+<a name="design"></a>
+##⚖️ Design Tradeoffs
 
 This project intentionally prioritizes **clarity, security fundamentals, and Free Tier compatibility**
 over enterprise-scale complexity.
@@ -201,14 +230,12 @@ Key tradeoffs include:
   IAM users were used to maintain simplicity and Free Tier compatibility.
   In production, IAM Identity Center (SSO) would be recommended.
 
-These decisions reflect realistic constraints while preserving security signal and architectural intent.
-
 ---
-
-## Skills Demonstrated
+<a name="skills"></a>
+##💡 Skills Demonstrated
 
 - **AWS Identity & Access Management (IAM)**
-  - Least-privilege role design
+  - Least-privilege role design & validation
   - IAM user lifecycle monitoring
   - Root account risk mitigation
 
@@ -233,8 +260,8 @@ These decisions reflect realistic constraints while preserving security signal a
   - Clear separation of duties and access
 
 ---
-
-## Repository Structure (WIP)
+<a name="repository"></a>
+##🛠️ Repository Structure (WIP)
 
 ```text
 .
@@ -256,8 +283,8 @@ These decisions reflect realistic constraints while preserving security signal a
 ```
 
 ---
-
-## Conclusion
+<a name="conclusion"></a>
+##🎯 Conclusion
 
 This project demonstrates a practical approach to securing and monitoring an AWS account
 using native services, validated controls, and deliberate design tradeoffs.
